@@ -1,5 +1,8 @@
 from src.property import Property
 
+
+#  TODO more refactoring, introduce .get()
+#   so that we can pass an alternative if an attribute/property is not found.
 def get_properties_from_os(list_of_buildings):
     list_of_properties = []
     for building in list_of_buildings:
