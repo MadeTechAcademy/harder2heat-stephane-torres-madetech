@@ -2,23 +2,23 @@ from src.property import Property
 
 def get_properties_from_os(list_of_buildings):
     list_of_properties = []
-    for i in range(len(list_of_buildings)):
-        coordinates = list_of_buildings[i]["geometry"]["coordinates"][0][0]
-        building = list_of_buildings[i]["properties"]
-        uprn_array = building["uprnreference"]
-        for j in range(len(uprn_array)):
+    for building in list_of_buildings:
+        coordinates = building["geometry"]["coordinates"][0][0]
+        properties = building["properties"]
+        list_of_uprns = properties["uprnreference"]
+        for individual_property in list_of_uprns:
             age = (
                 "buildingage_year"
-                if building["buildingage_year"]
+                if properties["buildingage_year"]
                 else "buildingage_period"
             )
-            new_prop = Property(uprn_array[j]["uprn"])
-            new_prop.connectivity = building["connectivity"]
-            new_prop.age = building[age]
-            new_prop.material = building["constructionmaterial"]
-            new_prop.long = coordinates[0]
-            new_prop.lat = coordinates[1]
-            list_of_properties.append(new_prop)
+            new_property = Property(individual_property["uprn"])
+            new_property.connectivity = properties["connectivity"]
+            new_property.age = properties[age]
+            new_property.material = properties["constructionmaterial"]
+            new_property.long = coordinates[0]
+            new_property.lat = coordinates[1]
+            list_of_properties.append(new_property)
 
     return list_of_properties
 
