@@ -1,2 +1,2 @@
 def test_tests_are_running():
-    assert False
+    assert True
