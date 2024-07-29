@@ -11,6 +11,5 @@ describe("The correct information for each property is displayed", () => {
   it("has the correct number of properties displayed on the screen", () => {
 
     cy.get("p").contains("4")
-
   })
 })
