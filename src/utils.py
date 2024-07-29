@@ -20,6 +20,7 @@ def get_properties_from_os(list_of_buildings):
             new_property.age = properties[age]
             new_property.material = properties["constructionmaterial"]
             new_property.coordinates = coordinates
+            new_property.OSID = properties.get("osid", None)
             list_of_properties.append(new_property)
 
     return list_of_properties
