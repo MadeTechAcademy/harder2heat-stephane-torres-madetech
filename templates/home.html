@@ -6,7 +6,9 @@
     <title>Welcome</title>
     <p>Properties : {{ properties|length }}</p>
 
-{#    {% for property in properties %}#}
+    {% for property in properties %}
+        <p>{{ property.coordinates }}</p>
+    {% endfor %}
 </head>
 <body>
    
