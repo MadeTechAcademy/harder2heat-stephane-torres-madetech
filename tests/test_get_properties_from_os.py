@@ -8,10 +8,11 @@ with open('properties.json') as json_properties:
     properties = get_properties_from_os(data)
 
 EXPECTED_SAMPLE_LENGTH = 4
-MOCK_FIRST_PROPERTY_COORDINATES = data[0]["geometry"]["coordinates"][0]
-MOCK_FIRST_PROPERTY_OSID = data[0]["properties"]["osid"]
-MOCK_FIRST_PROPERTY_AGE_LAST_UPDATED = data[0]["properties"]["buildingage_updatedate"]
-
+MOCK_FIRST_PROPERTY = {
+    "coordinates": data[0]["geometry"]["coordinates"][0],
+    "osid": data[0]["properties"]["osid"],
+    "age_last_updated": data[0]["properties"]["buildingage_updatedate"]
+}
 
 def test_tests_are_running():
     assert True
@@ -30,14 +31,14 @@ def test_type_object_in_properties_is_a_property():
 def test_property_has_list_of_coordinate():
     first_property = properties[0]
     assert isinstance(first_property.coordinates, list)
-    assert first_property.coordinates == MOCK_FIRST_PROPERTY_COORDINATES
+    assert first_property.coordinates == MOCK_FIRST_PROPERTY["coordinates"]
 
 def test_property_has_OSID():
     first_property = properties[0]
     assert isinstance(first_property.osid, str)
-    assert first_property.osid == MOCK_FIRST_PROPERTY_OSID
+    assert first_property.osid == MOCK_FIRST_PROPERTY["osid"]
 
 def test_property_has_age_last_updated_attribute():
     first_property = properties[0]
     assert isinstance(first_property.age_last_updated, str)
-    assert first_property.age_last_updated == MOCK_FIRST_PROPERTY_AGE_LAST_UPDATED
+    assert first_property.age_last_updated == MOCK_FIRST_PROPERTY["age_last_updated"]
