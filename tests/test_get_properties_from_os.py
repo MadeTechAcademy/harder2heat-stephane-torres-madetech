@@ -9,6 +9,7 @@ with open('properties.json') as json_properties:
 
 EXPECTED_SAMPLE_LENGTH = 4
 MOCK_FIRST_PROPERTY_COORDINATES = data[0]["geometry"]["coordinates"][0]
+MOCK_FIRST_PROPERTY_OSID = data[0]["properties"]["osid"]
 
 
 def test_tests_are_running():
@@ -33,3 +34,8 @@ def test_property_has_list_of_coordinate():
 def test_property_has_OSID():
     first_property = properties[0]
     assert isinstance(first_property.osid, str)
+    assert first_property.osid == MOCK_FIRST_PROPERTY_OSID
+
+def test_property_has_age_last_updated_attribute():
+    first_property = properties[0]
+    assert isinstance(first_property.last_updated_attribute, str)
