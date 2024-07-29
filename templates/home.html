@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
+
+</head>
+<body>
     <p>Properties : {{ properties|length }}</p>
 
     {% for property in properties %}
-        <p>{{ property.coordinates }}</p>
+        <ul>
+        {% for coordinate in property.coordinates %}
+            <li>{{ coordinate[0] }},{{ coordinate[1] }}</li>
+        {% endfor %}
+        </ul>
     {% endfor %}
-</head>
-<body>
-   
 </body>
 </html>

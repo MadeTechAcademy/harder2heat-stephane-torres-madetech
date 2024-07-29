@@ -14,9 +14,21 @@ describe("The correct information for each property is displayed", () => {
     cy.get("p").contains(`${mockPropertyData.length}`)
   })
 
-  it("had a list of property coordinates for each property", () => {
- mockPropertyData.forEach((building) => {
-      cy.get("p").contains(`${building.geometry.coordinates[0]}`)
+  it("has a list of property coordinates for each property", () => {
+
+      cy.get("ul").each(($ul, buildingNo) => {
+          cy.wrap($ul).within(($ul) => {
+              cy.get("li").each(($li,index) => {
+                  cy.wrap($li).should("contain.text", `${mockPropertyData[buildingNo].geometry.coordinates[0][index]}`)
+              })
+          })
+
+      })
+
     })
-  })
-})
+
+ })
+
+// .each(($li, index) => {
+//                 cy.wrap($li[1]).should('contain.text',)
+//                 })
