@@ -21,6 +21,7 @@ def get_properties_from_os(list_of_buildings):
             new_property.material = properties["constructionmaterial"]
             new_property.long = coordinates[0]
             new_property.lat = coordinates[1]
+            new_property.construction_year = building["geometry"]["coordinates"][0]
             list_of_properties.append(new_property)
 
     return list_of_properties

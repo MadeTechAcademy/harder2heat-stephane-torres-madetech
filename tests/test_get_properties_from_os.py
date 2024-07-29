@@ -16,4 +16,4 @@ def test_length_of_sample_properties_is_as_expected():
 def test_property_has_list_of_coordinate():
     first_property = properties[0]
 
-    assert isinstance(first_property["coordinates"], list)
+    assert isinstance(first_property.coordinates, list)

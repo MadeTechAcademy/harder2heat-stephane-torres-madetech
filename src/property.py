@@ -16,7 +16,7 @@ class Property():
         self.void = False
         self.long = 0
         self.lat = 0
-
+        self.coordinates = []
     def calculate_score(self):
         score = 0
         self.handle_age_string()
