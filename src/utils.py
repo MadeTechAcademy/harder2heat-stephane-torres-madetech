@@ -6,7 +6,7 @@ from src.property import Property
 def get_properties_from_os(list_of_buildings):
     list_of_properties = []
     for building in list_of_buildings:
-        coordinates = building["geometry"]["coordinates"][0][0]
+        coordinates = building["geometry"]["coordinates"][0]
         properties = building["properties"]
         list_of_uprns = properties["uprnreference"]
         for individual_property in list_of_uprns:
@@ -19,9 +19,7 @@ def get_properties_from_os(list_of_buildings):
             new_property.connectivity = properties["connectivity"]
             new_property.age = properties[age]
             new_property.material = properties["constructionmaterial"]
-            new_property.long = coordinates[0]
-            new_property.lat = coordinates[1]
-            new_property.construction_year = building["geometry"]["coordinates"][0]
+            new_property.coordinates = coordinates
             list_of_properties.append(new_property)
 
     return list_of_properties
