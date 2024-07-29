@@ -1,4 +1,6 @@
 import json
+
+from src.property import Property
 from src.utils import get_properties_from_os
 
 with open('properties.json') as json_properties:
@@ -16,8 +18,18 @@ def test_tests_are_running():
 def test_length_of_sample_properties_is_as_expected():
     assert len(properties) == EXPECTED_SAMPLE_LENGTH
 
+def test_type_of_properties_is_a_list():
+    assert isinstance(properties, list)
+
+def test_type_object_in_properties_is_a_property():
+    assert isinstance(properties[0], Property)
+
 
 def test_property_has_list_of_coordinate():
     first_property = properties[0]
     assert isinstance(first_property.coordinates, list)
     assert first_property.coordinates == MOCK_FIRST_PROPERTY_COORDINATES
+
+def test_property_has_OSID():
+    first_property = properties[0]
+    assert isinstance(first_property.osid, str)

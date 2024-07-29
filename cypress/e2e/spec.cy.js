@@ -15,20 +15,12 @@ describe("The correct information for each property is displayed", () => {
   })
 
   it("has a list of property coordinates for each property", () => {
-
       cy.get("ul").each(($ul, buildingNo) => {
           cy.wrap($ul).within(($ul) => {
               cy.get("li").each(($li,index) => {
                   cy.wrap($li).should("contain.text", `${mockPropertyData[buildingNo].geometry.coordinates[0][index]}`)
               })
           })
-
       })
-
     })
-
  })
-
-// .each(($li, index) => {
-//                 cy.wrap($li[1]).should('contain.text',)
-//                 })
