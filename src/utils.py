@@ -38,7 +38,7 @@ def get_property_connectivity(connectivity: str) -> str:
    return property_connectivities.get(connectivity, "Unknown")
 
 def get_property_area(property) -> float:
-    return area(property)
+    return round(area(property), 2)
 
 
             
