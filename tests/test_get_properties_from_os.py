@@ -46,3 +46,6 @@ def test_property_has_age_last_updated_attribute():
 def test_property_has_connectivity_attribute():
     assert isinstance(FIRST_PROPERTY.connectivity, str)
     assert FIRST_PROPERTY.connectivity == MOCK_FIRST_PROPERTY["connectivity"]
+
+def test_get_property_connectivity():
+    assert get_property_conncectivity("Semi-Connnected") == "Dual-Connected"
