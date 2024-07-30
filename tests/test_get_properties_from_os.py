@@ -1,6 +1,6 @@
 import json
 from src.property import Property
-from src.utils import get_properties_from_os, get_property_connectivity
+from src.utils import get_properties_from_os, get_property_connectivity, get_property_area
 
 with open('properties.json') as json_properties:
     data = json.load(json_properties)
@@ -55,6 +55,6 @@ def test_get_property_connectivity():
     assert get_property_connectivity("End Connected") == "Single Connected"
 
 def test_get_first_property_area():
-    actual = get_property_area(FIRST_PROPERTY)
+    actual = get_property_area(data[0]["geometry"])
     assert actual == MOCK_FIRST_PROPERTY["area"]
 

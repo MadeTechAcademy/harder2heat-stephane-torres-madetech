@@ -1,4 +1,5 @@
 from src.property import Property
+from area import area
 
 
 #  TODO more refactoring, introduce .get()
@@ -35,6 +36,10 @@ property_connectivities = {
 
 def get_property_connectivity(connectivity: str) -> str:
    return property_connectivities.get(connectivity, "Unknown")
+
+def get_property_area(property) -> float:
+    return area(property)
+
 
             
 
