@@ -27,13 +27,14 @@ def get_properties_from_os(list_of_buildings):
     return list_of_properties
 
 
+property_connectivities = {
+    "Standalone": "Free-Standing",
+    "Semi-Connected": "Dual-Connected",
+    "End Connected": "Single Connected",
+}
+
 def get_property_connectivity(connectivity: str) -> str:
-    if connectivity == "Semi-Connected":
-        return "Dual-Connected"
-    elif connectivity == "Standalone":
-        return "Free-Standing"
-    else:
-        return "Single-Connected"
+   return property_connectivities.get(connectivity, "Unknown")
 
             
 

@@ -51,5 +51,5 @@ def test_property_has_connectivity_attribute():
 def test_get_property_connectivity():
     assert get_property_connectivity("Semi-Connected") == "Dual-Connected"
     assert get_property_connectivity("Standalone") == "Free-Standing"
-    assert get_property_connectivity("End Connected") == "Single-Connected"
+    assert get_property_connectivity("End Connected") == "Single Connected"
 
