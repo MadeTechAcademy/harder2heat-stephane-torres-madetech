@@ -33,6 +33,16 @@ describe("The correct information for each property is displayed", () => {
             })
         })
     })
+
+    it("each property should display the correct date its building age was last updated", () => {
+        cy.get(".property").each((item, index) => {
+            cy.wrap(item).within(() => {
+                cy.get("p").each(($p) => {
+                    cy.wrap($p).should("contain.text", mockPropertyData[index].properties.buildingage_updatedate)
+                })
+            })
+        })
+    })
 })
 
 
