@@ -11,7 +11,8 @@ MOCK_FIRST_PROPERTY = {
     "coordinates": data[0]["geometry"]["coordinates"][0],
     "osid": data[0]["properties"]["osid"],
     "age_last_updated": data[0]["properties"]["buildingage_updatedate"],
-    "connectivity": "Dual-Connected"
+    "connectivity": "Dual-Connected",
+    "area": 111.44
 }
 
 FIRST_PROPERTY = properties[0]
@@ -52,4 +53,8 @@ def test_get_property_connectivity():
     assert get_property_connectivity("Semi-Connected") == "Dual-Connected"
     assert get_property_connectivity("Standalone") == "Free-Standing"
     assert get_property_connectivity("End Connected") == "Single Connected"
+
+def test_get_first_property_area():
+    actual = get_property_area(FIRST_PROPERTY)
+    assert actual == MOCK_FIRST_PROPERTY["area"]
 
