@@ -37,8 +37,9 @@ property_connectivities = {
 def get_property_connectivity(connectivity: str) -> str:
    return property_connectivities.get(connectivity, "Unknown")
 
-def get_property_area(property) -> float:
-    return round(area(property), 2)
+def get_property_area(coordinates) -> float:
+    mock_geometry = {'type':'Polygon','coordinates':[coordinates]}
+    return round(area(mock_geometry), 2)
 
 
             
