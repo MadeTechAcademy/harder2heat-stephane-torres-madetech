@@ -7,14 +7,17 @@
 
 </head>
 <body>
-    <p>Properties : {{ properties|length }}</p>
+<p>Properties : {{ properties|length }}</p>
 
-    {% for property in properties %}
+{% for property in properties %}
+    <div class="property">
+        <p>{{ property.osid }}</p>
         <ul>
-        {% for coordinate in property.coordinates %}
-            <li>{{ coordinate[0] }}, {{ coordinate[1]}}</li>
-        {% endfor %}
+            {% for coordinate in property.coordinates %}
+                <li>{{ coordinate[0] }}, {{ coordinate[1] }}</li>
+            {% endfor %}
         </ul>
-    {% endfor %}
+    </div>
+{% endfor %}
 </body>
 </html>

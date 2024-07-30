@@ -25,7 +25,13 @@ describe("The correct information for each property is displayed", () => {
     })
 
     it("each property has the correct OSID displayed", () => {
-
+        cy.get(".property").each((item, index) => {
+            cy.wrap(item).within(() => {
+                cy.get("p").each(($p) => {
+                    cy.wrap($p).should("contain.text", mockPropertyData[index].properties.osid)
+                })
+            })
+        })
     })
 })
 
