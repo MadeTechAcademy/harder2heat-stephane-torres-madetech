@@ -1,6 +1,6 @@
 import json
 from src.property import Property
-from src.utils import get_properties_from_os
+from src.utils import get_properties_from_os, get_property_connectivity
 
 with open('properties.json') as json_properties:
     data = json.load(json_properties)
@@ -48,4 +48,4 @@ def test_property_has_connectivity_attribute():
     assert FIRST_PROPERTY.connectivity == MOCK_FIRST_PROPERTY["connectivity"]
 
 def test_get_property_connectivity():
-    assert get_property_conncectivity("Semi-Connnected") == "Dual-Connected"
+    assert get_property_connectivity("Semi-Connected") == "Dual-Connected"

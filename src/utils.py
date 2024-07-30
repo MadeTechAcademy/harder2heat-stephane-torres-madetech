@@ -16,8 +16,7 @@ def get_properties_from_os(list_of_buildings):
                 else "buildingage_period"
             )
             new_property = Property(individual_property["uprn"])
-            if properties["connectivity"] == 'Semi-Connected':
-                new_property.connectivity = "Dual-Connected"
+            new_property.connectivity = get_property_connectivity(properties["connectivity"])
             new_property.age = properties[age]
             new_property.material = properties["constructionmaterial"]
             new_property.coordinates = coordinates
@@ -26,6 +25,11 @@ def get_properties_from_os(list_of_buildings):
             list_of_properties.append(new_property)
 
     return list_of_properties
+
+
+def get_property_connectivity(connectivity: str) -> str:
+    if connectivity == "Semi-Connected":
+        return "Dual-Connected"
 
             
 
