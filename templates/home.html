@@ -11,13 +11,13 @@
 
 {% for property in properties %}
     <div class="property">
-        <p>{{ property.osid }}</p>
+        <p data-testid = "osid">{{ property.osid }}</p>
         <ul>
             {% for coordinate in property.coordinates %}
                 <li>{{ coordinate[0] }}, {{ coordinate[1] }}</li>
             {% endfor %}
         </ul>
-{#        <p data-testid = "age-last-updated">{{ property.age_last_updated }}</p>#}
+        <p data-testid = "age-last-updated">{{ property.age_last_updated }}</p>
     </div>
 {% endfor %}
 </body>
