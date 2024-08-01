@@ -1,4 +1,8 @@
 const mockPropertyData = require("../../properties.json")
+
+const mockPropertyAreas  = [111.44, 32.02, 120.00, 38.18]
+
+
 describe('template spec', () => {
     it('passes', () => {
         cy.visit('http://localhost:5000')

@@ -16,6 +16,7 @@ class Property():
         self.coordinates = []
         self.OSID = ''
         self.age_last_updated = ''
+        self.area = 0
     # def calculate_score(self):
     #     score = 0
     #     self.handle_age_string()
