@@ -25,20 +25,30 @@ describe("The correct information for each property is displayed", () => {
     })
 
     it("each property has the correct OSID displayed", () => {
-        cy.get(".property").each((property, index) => {
+        cy.get(".property").each((property, propertyNumber) => {
             cy.wrap(property).within(() => {
                 cy.get('[data-testId="osid"]').each((osid) => {
-                    cy.wrap(osid).should("contain.text", mockPropertyData[index].properties.osid)
+                    cy.wrap(osid).should("contain.text", mockPropertyData[propertyNumber].properties.osid)
                 })
             })
         })
     })
 
     it("each property should display the correct date its building age was last updated", () => {
-        cy.get(".property").each((item, index) => {
-            cy.wrap(item).within(() => {
+        cy.get(".property").each((property, propertyNumber) => {
+            cy.wrap(property).within(() => {
                 cy.get('[data-testId="age-last-updated"]').each((age) => {
-                    cy.wrap(age).should("contain.text", mockPropertyData[index].properties.buildingage_updatedate)
+                    cy.wrap(age).should("contain.text", mockPropertyData[propertyNumber].properties.buildingage_updatedate)
+                })
+            })
+        })
+    })
+
+    it("each property should display its area in metres sq", () => {
+         cy.get(".property").each((property, index) => {
+            cy.wrap(property).within(() => {
+                cy.get('[data-testId="area"]').each((age) => {
+                    cy.wrap(age).should("contain.text", mockPropertyAreas[index])
                 })
             })
         })

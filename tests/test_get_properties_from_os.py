@@ -48,7 +48,7 @@ def test_property_has_connectivity_attribute():
     assert isinstance(FIRST_PROPERTY.connectivity, str)
     assert FIRST_PROPERTY.connectivity == MOCK_FIRST_PROPERTY["connectivity"]
 
-# TODO there is no case for multi-connected properties for example terraced houses or flats
+# TODO there is no case for multi-connected properties for example terraced houses or flats...
 def test_get_property_connectivity():
     assert get_property_connectivity("Semi-Connected") == "Dual-Connected"
     assert get_property_connectivity("Standalone") == "Free-Standing"
