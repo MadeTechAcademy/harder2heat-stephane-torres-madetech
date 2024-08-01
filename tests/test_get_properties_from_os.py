@@ -59,5 +59,5 @@ def test_get_first_property_area():
     assert actual == MOCK_FIRST_PROPERTY["area"]
 
 def test_property_has_area_attribute():
-    assert isinstance(FIRST_PROPERTY.area, int)
+    assert isinstance(FIRST_PROPERTY.area, float)
 
