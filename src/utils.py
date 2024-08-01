@@ -23,6 +23,7 @@ def get_properties_from_os(list_of_buildings):
             new_property.coordinates = coordinates
             new_property.osid = properties.get("osid", None)
             new_property.age_last_updated = properties.get("buildingage_updatedate", None)
+            new_property.area = get_property_area(coordinates)
             list_of_properties.append(new_property)
 
     return list_of_properties
