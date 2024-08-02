@@ -1,8 +1,5 @@
 const mockPropertyData = require("../../properties.json")
 
-const mockPropertyAreas  = [111.44, 32.02, 120.00, 38.18]
-
-
 describe('template spec', () => {
     it('passes', () => {
         cy.visit('http://localhost:5000')
@@ -49,10 +46,10 @@ describe("The correct information for each property is displayed", () => {
     })
 
     it("each property should display its area in metres sq", () => {
-         cy.get(".property").each((property, index) => {
+         cy.get(".property").each((property, propertyNumber) => {
             cy.wrap(property).within(() => {
-                cy.get('[data-testId="area"]').each((age) => {
-                    cy.wrap(age).should("contain.text", mockPropertyAreas[index])
+                cy.get('[data-testId="area"]').each((area) => {
+                    cy.wrap(area).should("contain.text", mockPropertyData[propertyNumber].properties.geometry_area_m2)
                 })
             })
         })

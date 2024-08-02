@@ -12,7 +12,7 @@ MOCK_FIRST_PROPERTY = {
     "osid": data[0]["properties"]["osid"],
     "age_last_updated": data[0]["properties"]["buildingage_updatedate"],
     "connectivity": "Dual-Connected",
-    "area": 111.44
+    "area": 111.601
 }
 
 FIRST_PROPERTY = properties[0]
