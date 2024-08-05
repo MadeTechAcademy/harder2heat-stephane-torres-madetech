@@ -1,6 +1,4 @@
 from src.property import Property
-from area import area
-
 
 #  TODO more refactoring, introduce .get()
 #   so that we can pass an alternative if an attribute/property is not found.
@@ -22,7 +20,7 @@ def get_properties_from_os(list_of_buildings):
             new_property.material = properties["constructionmaterial"]
             new_property.coordinates = coordinates
             new_property.osid = properties.get("osid", None)
-            new_property.age_last_updated = properties.get("buildingage_updatedate", None)
+            new_property.date_age_last_updated = properties.get("buildingage_updatedate", None)
             new_property.area_m2 = properties.get("geometry_area_m2", "Unknown")
             list_of_properties.append(new_property)
 
@@ -38,9 +36,6 @@ property_connectivities = {
 def get_property_connectivity(connectivity: str) -> str:
    return property_connectivities.get(connectivity, "Unknown")
 
-def get_property_area(coordinates) -> float:
-    mock_geometry = {'type':'Polygon','coordinates':[coordinates]}
-    return round(area(mock_geometry), 2)
 
 
             

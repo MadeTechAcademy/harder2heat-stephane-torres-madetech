@@ -1,8 +1,8 @@
 import json
 from src.property import Property
-from src.utils import get_properties_from_os, get_property_connectivity, get_property_area
+from src.utils import get_properties_from_os, get_property_connectivity
 
-with open('properties.json') as json_properties:
+with open('../properties.json') as json_properties:
     data = json.load(json_properties)
     properties = get_properties_from_os(data)
 
@@ -41,8 +41,8 @@ def test_property_has_OSID():
     assert FIRST_PROPERTY.osid == MOCK_FIRST_PROPERTY["osid"]
 
 def test_property_has_age_last_updated_attribute():
-    assert isinstance(FIRST_PROPERTY.age_last_updated, str)
-    assert FIRST_PROPERTY.age_last_updated == MOCK_FIRST_PROPERTY["age_last_updated"]
+    assert isinstance(FIRST_PROPERTY.date_age_last_updated, str)
+    assert FIRST_PROPERTY.date_age_last_updated == MOCK_FIRST_PROPERTY["age_last_updated"]
 
 def test_property_has_connectivity_attribute():
     assert isinstance(FIRST_PROPERTY.connectivity, str)
@@ -54,9 +54,9 @@ def test_get_property_connectivity():
     assert get_property_connectivity("Standalone") == "Free-Standing"
     assert get_property_connectivity("End Connected") == "Single Connected"
 
-def test_get_first_property_area():
-    actual = get_property_area(FIRST_PROPERTY.coordinates)
-    assert actual == MOCK_FIRST_PROPERTY["area"]
+# def test_get_first_property_area():
+#     actual = get_property_area(FIRST_PROPERTY.coordinates)
+#     assert actual == MOCK_FIRST_PROPERTY["area"]
 
 def test_property_has_area_attribute():
     assert isinstance(FIRST_PROPERTY.area, float)
