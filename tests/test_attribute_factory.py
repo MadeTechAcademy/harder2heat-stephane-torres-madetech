@@ -10,7 +10,7 @@ with open('../properties.json') as json_properties:
 
 
 def test_attribute_factory_returns_dict():
-    assert isinstance(attribute_factory(), dict)
+    assert isinstance(attribute_factory("osid", buildings_attributes[0]), dict)
 
-def test_attibute_factory_returns_desired_attribtue_osid():
-    assert attribute_factory("osid") == {"osid": }
+def test_attribute_factory_returns_desired_attribute_osid():
+    assert attribute_factory("osid", buildings_attributes[0]) == {"osid": buildings_attributes[0]["osid"]}
