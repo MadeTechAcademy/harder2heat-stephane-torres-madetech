@@ -40,8 +40,6 @@ property_connectivities = {
 def get_property_connectivity(connectivity: str) -> str:
    return property_connectivities.get(connectivity, connectivity)
 
-# TODO two ways to neaten this up, pull some of the logic from the factory into get_desired so factory only returns an obj and does nothing else
-#   means factory doesn't need to care about enums, might make the factory more reusable
 def get_desired_attributes_from_building_properties(desired_attributes: Enum, building_properties: dict) -> list[dict]:
 
     list_of_desired_attributes = []
