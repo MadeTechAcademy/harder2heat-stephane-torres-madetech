@@ -1,4 +1,9 @@
 import json
+from enum import Enum
+
+import pytest
+from src.enums import DesiredAttribrutesFromBuildingPropterties
+from unittest.mock import MagicMock
 from src.property import Property
 from src.utils import get_properties_from_os, get_property_connectivity, get_desired_attributes_from_building_properties
 
@@ -63,7 +68,14 @@ def test_property_has_area_attribute():
 
 def test_get_desired_attributes_from_building_properties_returns_dicts_of_desired_attributes():
     expected = [{"osid": MOCK_FIRST_PROPERTY["osid"]}, {"geometry_area_m2": MOCK_FIRST_PROPERTY["area"]}, {"buildingage_updatedate": MOCK_FIRST_PROPERTY["age_last_updated"]}, {"connectivity": MOCK_FIRST_PROPERTY["connectivity"]}]
-    assert get_desired_attributes_from_building_properties(data[0]["properties"]) == expected
+    assert get_desired_attributes_from_building_properties(DesiredAttribrutesFromBuildingPropterties, data[0]["properties"]) == expected
+
+def test_error_is_thrown_when_attribute_not_found():
+    class WrongAttributes(Enum):
+        AREA = "area"
+
+    with pytest.raises(AttributeError):
+        get_desired_attributes_from_building_properties(WrongAttributes, data[0]["properties"])
 
 
 
