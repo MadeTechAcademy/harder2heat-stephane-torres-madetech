@@ -10,7 +10,7 @@
 <p>Properties : {{ properties|length }}</p>
 
 {% for property in properties %}
-    <div class="property">
+    <div class="property" style="border: solid black 1px">
         <h3>OSID:</h3>
         <p data-testid = "osid">{{ property.osid }}</p>
         <h3>Coordinates:</h3>
@@ -22,7 +22,7 @@
         <h3>Area in metres squared:</h3>
         <p data-testid="area">{{ property.area_m2 }}</p>
         <h3>Date Last Updated:</h3>
-        <p data-testid = "age-last-updated">{{ property.age_last_updated }}</p>
+        <p data-testid = "age-last-updated">{{ property.date_age_last_updated }}</p>
     </div>
 {% endfor %}
 </body>
