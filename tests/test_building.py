@@ -1,13 +1,14 @@
 import json
 from src.utils import get_desired_attributes_from_building_properties
-from src.enums import DesiredAttribrutesFromBuildingGeometry
+from src.enums import DesiredAttribrutesFromBuildingGeometry, DesiredAttribrutesFromBuildingPropterties
 from src.building import Building
 
 with open('properties.json') as json_properties:
     data = json.load(json_properties)
 
 
-test_building = Building(coordinates=get_desired_attributes_from_building_properties(DesiredAttribrutesFromBuildingGeometry, data[0]["geometry"]))
+test_building = Building(coordinates=get_desired_attributes_from_building_properties(DesiredAttribrutesFromBuildingGeometry, data[0]["geometry"]),
+                         attributes=get_desired_attributes_from_building_properties(DesiredAttribrutesFromBuildingPropterties, data[0]["properties"]))
 
 def test_building_has_a_list_of_coordinates():
     assert isinstance(test_building.coordinates, list)
