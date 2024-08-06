@@ -42,15 +42,19 @@ def get_property_connectivity(connectivity: str) -> str:
 
 # TODO two ways to neaten this up, pull some of the logic from the factory into get_desired so factory only returns an obj and does nothing else
 #   means factory doesn't need to care about enums, might make the factory more reusable
-def get_desired_attributes_from_building_properties(building_properties) -> list[dict]:
+def get_desired_attributes_from_building_properties(building_properties: dict) -> list[dict]:
+
     list_of_desired_attributes = []
+
     for desired_attribute in DesiredAttribrutesFromBuildingPropterties:
         value = building_properties.get(desired_attribute.value, None)
+
         if value == None:
             raise AttributeError(f'Attribute {desired_attribute} not found')
 
-        if desired_attribute == DesiredAttribrutesFromBuildingPropterties.CONNECTIVITY.value:
+        if desired_attribute.value == DesiredAttribrutesFromBuildingPropterties.CONNECTIVITY.value:
             value = get_property_connectivity(value)
+
         list_of_desired_attributes.append(attribute_factory(desired_attribute.value, value))
 
     return list_of_desired_attributes
