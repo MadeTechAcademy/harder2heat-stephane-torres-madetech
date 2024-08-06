@@ -45,17 +45,18 @@ def get_property_connectivity(connectivity: str) -> str:
 def get_desired_attributes_from_building_properties(building_properties) -> list[dict]:
     list_of_desired_attributes = []
     for desired_attribute in DesiredAttribrutesFromBuildingPropterties:
-        list_of_desired_attributes.append(attribute_factory(desired_attribute.value, building_properties))
+        value = building_properties.get(desired_attribute.value, None)
+        if value == None:
+            raise AttributeError(f'Attribute {desired_attribute} not found')
+
+        if desired_attribute == DesiredAttribrutesFromBuildingPropterties.CONNECTIVITY.value:
+            value = get_property_connectivity(value)
+        list_of_desired_attributes.append(attribute_factory(desired_attribute.value, value))
 
     return list_of_desired_attributes
 
-def attribute_factory(desired_attribute: str, building_properties: dict) -> dict:
-    value = building_properties.get(desired_attribute, None)
-    if value == None:
-        raise AttributeError(f'Attribute {desired_attribute} not found')
+def attribute_factory(desired_attribute: str, value: str) -> dict:
 
-    if desired_attribute == DesiredAttribrutesFromBuildingPropterties.CONNECTIVITY.value:
-        value = get_property_connectivity(value)
     return {desired_attribute: value}
 
 
