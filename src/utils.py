@@ -1,6 +1,6 @@
 from src.property import Property
 from src.enums import DesiredAttribrutesFromBuildingPropterties
-from src.attribute_factory import attribute_factory
+
 
 #  TODO more refactoring, introduce .get()
 #   so that we can pass an alternative if an attribute/property is not found.
@@ -39,13 +39,22 @@ def get_property_connectivity(connectivity: str) -> str:
    return property_connectivities.get(connectivity, "Unknown")
 
 
-def get_attributes_from_building_properties(building_properties) -> list[dict]:
+def get_desired_attributes_from_building_properties(building_properties) -> list[dict]:
 
     list_of_desired_attributes = []
     for desired_attribute in DesiredAttribrutesFromBuildingPropterties:
         list_of_desired_attributes.append(attribute_factory(desired_attribute.value, building_properties))
 
     return list_of_desired_attributes
+
+def attribute_factory(desired_attribute: str, building_properties: dict) -> dict:
+    value = building_properties.get(desired_attribute, None)
+    if value == None:
+        raise AttributeError(f'Attribute {desired_attribute} not found')
+
+    if desired_attribute == DesiredAttribrutesFromBuildingPropterties.CONNECTIVITY.value:
+        value = get_property_connectivity(value)
+    return {desired_attribute: value}
 
 
 

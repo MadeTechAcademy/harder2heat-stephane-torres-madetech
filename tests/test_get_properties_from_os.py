@@ -1,6 +1,6 @@
 import json
 from src.property import Property
-from src.utils import get_properties_from_os, get_property_connectivity, get_attributes_from_building_properties
+from src.utils import get_properties_from_os, get_property_connectivity, get_desired_attributes_from_building_properties
 
 with open('properties.json') as json_properties:
     data = json.load(json_properties)
@@ -62,8 +62,8 @@ def test_property_has_area_attribute():
     assert isinstance(FIRST_PROPERTY.area_m2, float)
 
 def test_get_desired_attributes_from_building_properties_returns_dicts_of_desired_attributes():
-    expected = [{"osid": MOCK_FIRST_PROPERTY["osid"]}, {"geometry_area_m2": MOCK_FIRST_PROPERTY["area"]}, {"buildingage_updatedate": MOCK_FIRST_PROPERTY["age_last_updated"]}]
-    assert get_attributes_from_building_properties(data[0]["properties"]) == expected
+    expected = [{"osid": MOCK_FIRST_PROPERTY["osid"]}, {"geometry_area_m2": MOCK_FIRST_PROPERTY["area"]}, {"buildingage_updatedate": MOCK_FIRST_PROPERTY["age_last_updated"]}, {"connectivity": MOCK_FIRST_PROPERTY["connectivity"]}]
+    assert get_desired_attributes_from_building_properties(data[0]["properties"]) == expected
 
 
 
