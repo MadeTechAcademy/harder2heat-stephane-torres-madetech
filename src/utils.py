@@ -39,8 +39,10 @@ def get_property_connectivity(connectivity: str) -> str:
    return property_connectivities.get(connectivity, "Unknown")
 
 
-def get_attributes_from_building_properties() -> list[dict]:
-    return [{}]
+def get_attributes_from_building_properties(building_properties) -> list[dict]:
+
+    for desired_attribute in DesiredAttribrutesFromBuildingPropterties:
+        attribute_factory(desired_attribute.value, building_properties)
 
 
 
