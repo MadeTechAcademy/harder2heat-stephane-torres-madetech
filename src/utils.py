@@ -41,8 +41,11 @@ def get_property_connectivity(connectivity: str) -> str:
 
 def get_attributes_from_building_properties(building_properties) -> list[dict]:
 
+    list_of_desired_attributes = []
     for desired_attribute in DesiredAttribrutesFromBuildingPropterties:
-        attribute_factory(desired_attribute.value, building_properties)
+        list_of_desired_attributes.append(attribute_factory(desired_attribute.value, building_properties))
+
+    return list_of_desired_attributes
 
 
 

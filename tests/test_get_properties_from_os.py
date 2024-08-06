@@ -63,7 +63,7 @@ def test_property_has_area_attribute():
 
 def test_get_desired_attributes_from_building_properties_returns_dicts_of_desired_attributes():
     expected = [{"osid": MOCK_FIRST_PROPERTY["osid"]}, {"geometry_area_m2": MOCK_FIRST_PROPERTY["area"]}, {"buildingage_updatedate": MOCK_FIRST_PROPERTY["age_last_updated"]}]
-    assert get_attributes_from_building_properties(data[0][properties]) == expected
+    assert get_attributes_from_building_properties(data[0]["properties"]) == expected
 
 
 
