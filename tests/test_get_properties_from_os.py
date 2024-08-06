@@ -48,16 +48,18 @@ def test_property_has_connectivity_attribute():
     assert isinstance(FIRST_PROPERTY.connectivity, str)
     assert FIRST_PROPERTY.connectivity == MOCK_FIRST_PROPERTY["connectivity"]
 
-# TODO there is no case for multi-connected properties for example terraced houses or flats...
+
 def test_get_property_connectivity():
     assert get_property_connectivity("Semi-Connected") == "Dual-Connected"
     assert get_property_connectivity("Standalone") == "Free-Standing"
     assert get_property_connectivity("End Connected") == "Single Connected"
 
-def test_get_first_property_area():
-    actual = get_property_area(FIRST_PROPERTY.coordinates)
-    assert actual == MOCK_FIRST_PROPERTY["area"]
 
 def test_property_has_area_attribute():
-    assert isinstance(FIRST_PROPERTY.area, float)
+    assert isinstance(FIRST_PROPERTY.area_m2, float)
+
+def test_get_first_property_area():
+    assert FIRST_PROPERTY.area_m2, float == MOCK_FIRST_PROPERTY["area"]
+
+
 

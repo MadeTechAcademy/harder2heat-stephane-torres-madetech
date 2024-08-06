@@ -10,7 +10,7 @@
 <p>Properties : {{ properties|length }}</p>
 
 {% for property in properties %}
-    <div class="property">
+    <div class="property" style="border: solid black 1px">
         <h3>OSID:</h3>
         <p data-testid = "osid">{{ property.osid }}</p>
         <h3>Coordinates:</h3>
