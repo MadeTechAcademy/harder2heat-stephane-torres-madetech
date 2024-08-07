@@ -22,14 +22,11 @@
         <ul>
             {% for coordinates in property.coordinates %}
                 {% for key, value in coordinates.items() %}
-                <li>{{ value[0] }}, {{ value[1] }}</li>
+                <li>{{ value[0] }}</li>
                     {% endfor %}
             {% endfor %}
         </ul>
-        <h3>Area in metres squared:</h3>
-        <p data-testid="area">{{ property.area_m2 }}</p>
-        <h3>Date Last Updated:</h3>
-        <p data-testid = "age-last-updated">{{ property.date_age_last_updated }}</p>
+
     </div>
 {% endfor %}
 </body>
