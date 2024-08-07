@@ -1,7 +1,8 @@
 from enum import Enum
 
+from src.building import Building
 from src.property import Property
-from src.enums import DesiredAttribrutesFromBuildingPropterties
+from src.enums import DesiredAttribrutesFromBuildingPropterties, DesiredAttribrutesFromBuildingGeometry
 
 
 #  TODO more refactoring, introduce .get()
@@ -59,6 +60,15 @@ def get_desired_attributes_from_building_properties(desired_attributes: Enum, bu
 
 def attribute_factory(desired_attribute: str, value: str) -> dict:
     return {desired_attribute: value}
+
+
+def get_list_of_buildings_from_os(list_of_buildings_data: dict) -> list[Building]:
+    list_of_buildings = []
+    for building in list_of_buildings_data:
+        list_of_buildings.append(Building(coordinates=get_desired_attributes_from_building_properties(DesiredAttribrutesFromBuildingGeometry, building["geometry"]),
+                                          attributes=get_desired_attributes_from_building_properties(DesiredAttribrutesFromBuildingPropterties, building["properties"])))
+
+    return list_of_buildings
 
 
 

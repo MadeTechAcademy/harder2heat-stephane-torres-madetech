@@ -11,12 +11,19 @@
 
 {% for property in properties %}
     <div class="property" style="border: solid black 1px">
-        <h3>OSID:</h3>
-        <p data-testid = "osid">{{ property.osid }}</p>
+        {% for attribute in property.attributes %}
+            {% for key, value in attribute.items() %}
+                <h3>{{ key }}</h3>
+                <p data-testid = {{ key }}>{{ value }}</p>
+                    {% endfor %}
+            {% endfor %}
+
         <h3>Coordinates:</h3>
         <ul>
-            {% for coordinate in property.coordinates %}
-                <li>{{ coordinate[0] }}, {{ coordinate[1] }}</li>
+            {% for coordinates in property.coordinates %}
+                {% for key, value in coordinates.items() %}
+                <li>{{ value[0] }}, {{ value[1] }}</li>
+                    {% endfor %}
             {% endfor %}
         </ul>
         <h3>Area in metres squared:</h3>
