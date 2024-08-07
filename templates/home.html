@@ -22,7 +22,9 @@
         <ul>
             {% for coordinates in property.coordinates %}
                 {% for key, value in coordinates.items() %}
-                <li>{{ value[0] }}</li>
+                    {% for coord_pair in value[0] %}
+                        <li>{{ coord_pair[0] }}, {{ coord_pair[1] }}</li>
+                            {% endfor %}
                     {% endfor %}
             {% endfor %}
         </ul>
