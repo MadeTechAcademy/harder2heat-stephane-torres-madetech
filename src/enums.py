@@ -9,6 +9,7 @@ class DesiredAttribrutesFromBuildingPropterties(Enum):
     AREA = "geometry_area_m2"
     AGE_LAST_UPDATED = "buildingage_updatedate"
     CONNECTIVITY = "connectivity"
+    UPRNS = "uprnreference"
 
 class DesiredAttribrutesFromBuildingGeometry(Enum):
     COORDINATES = "coordinates"

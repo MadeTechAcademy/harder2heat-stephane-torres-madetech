@@ -67,7 +67,11 @@ def test_property_has_area_attribute():
     assert isinstance(FIRST_PROPERTY.area_m2, float)
 
 def test_get_desired_attributes_from_building_properties_returns_dicts_of_desired_attributes():
-    expected = [{"osid": MOCK_FIRST_PROPERTY["osid"]}, {"geometry_area_m2": MOCK_FIRST_PROPERTY["area"]}, {"buildingage_updatedate": MOCK_FIRST_PROPERTY["age_last_updated"]}, {"connectivity": MOCK_FIRST_PROPERTY["connectivity"]}]
+    expected = [{"osid": MOCK_FIRST_PROPERTY["osid"]}, {"geometry_area_m2": MOCK_FIRST_PROPERTY["area"]},
+                {"buildingage_updatedate": MOCK_FIRST_PROPERTY["age_last_updated"]},
+                {"connectivity": MOCK_FIRST_PROPERTY["connectivity"]},
+                {'uprnreference': [{'buildingid': '02ae4ae4-6119-4d72-aef9-e56013d25e0d', 'buildingversiondate': '2024-05-25', 'uprn': 100090062842}]}
+]
     assert get_desired_attributes_from_building_properties(DesiredAttribrutesFromBuildingPropterties, data[0]["properties"]) == expected
 
 def test_error_is_thrown_when_attribute_not_found():

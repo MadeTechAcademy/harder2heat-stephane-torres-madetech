@@ -1,4 +1,6 @@
 import json
+
+from src.property import Property
 from src.utils import get_desired_attributes_from_building_properties
 from src.enums import DesiredAttribrutesFromBuildingGeometry, DesiredAttribrutesFromBuildingPropterties
 from src.building import Building
@@ -17,3 +19,7 @@ def test_building_has_a_list_of_coordinates():
 def test_building_has_a_list_of_desired_attributes():
     assert isinstance(test_building.attributes, list)
     assert test_building.attributes[0] == {"osid": data[0]["properties"]["osid"]}
+
+def test_building_has_a_list_of_properties():
+    assert isinstance(test_building.properties, list)
+    assert isinstance(test_building.properties[0], Property)
