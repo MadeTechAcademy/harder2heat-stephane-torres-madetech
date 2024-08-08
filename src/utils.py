@@ -42,7 +42,7 @@ def get_list_of_buildings_from_os_data(os_buildings_data: dict) -> list[Building
 
 
 def get_list_of_buildings_from_european_data() -> list[Building]:
-    return [Building(coordinates=[], attributes=[])]
+    return [Building(coordinates=[], attributes=[{"number_of_floors": 0}, {"distance_to_transport": 0}])]
 
 
             
