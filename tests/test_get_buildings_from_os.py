@@ -2,7 +2,7 @@ import json
 from enum import Enum
 import pytest
 from src.building import Building
-from src.enums import DesiredAttributesFromBuildingPropertiesOS
+from src.enums import DesiredAttributesFromBuildingAttributesOS
 from src.utils import get_property_connectivity, get_desired_attributes_from_building_attributes, \
     get_list_of_buildings_from_os_data
 
@@ -37,9 +37,9 @@ def test_type_object_in_properties_is_a_building():
     assert isinstance(buildings[0], Building)
 
 def test_building_has_list_of_coordinates():
+    assert any("coordinates" in dictionary for dictionary in FIRST_BUILDING.coordinates)
     for attribute in FIRST_BUILDING.attributes:
-        if "coordinate" in attribute.keys():
-            assert True
+        if "coordinates" in attribute.keys():
             assert attribute.value() == MOCK_FIRST_PROPERTY["coordinates"]
 
 def test_building_has_OSID():
@@ -81,7 +81,7 @@ def test_get_desired_attributes_from_building_properties_returns_dicts_of_desire
                 {"connectivity": MOCK_FIRST_PROPERTY["connectivity"]},
                 {'uprnreference': [{'buildingid': '02ae4ae4-6119-4d72-aef9-e56013d25e0d', 'buildingversiondate': '2024-05-25', 'uprn': 100090062842}]}
 ]
-    assert get_desired_attributes_from_building_attributes(DesiredAttributesFromBuildingPropertiesOS, data[0]["properties"]) == expected
+    assert get_desired_attributes_from_building_attributes(DesiredAttributesFromBuildingAttributesOS, data[0]["properties"]) == expected
 
 def test_error_is_thrown_when_attribute_not_found():
     class WrongAttributes(Enum):

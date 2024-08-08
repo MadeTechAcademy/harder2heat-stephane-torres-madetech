@@ -1,6 +1,6 @@
 from enum import Enum
 from src.building import Building
-from src.enums import DesiredAttributesFromBuildingPropertiesOS, DesiredAttribrutesFromBuildingGeometryOS
+from src.enums import DesiredAttributesFromBuildingAttributesOS, DesiredAttribrutesFromBuildingGeometryOS
 
 property_connectivities = {
     "Standalone": "Free-Standing",
@@ -21,7 +21,7 @@ def get_desired_attributes_from_building_attributes(desired_attributes: Enum, bu
         if value == None:
             raise AttributeError(f'Attribute {desired_attribute} not found')
 
-        if desired_attribute.value == DesiredAttributesFromBuildingPropertiesOS.CONNECTIVITY.value:
+        if desired_attribute.value == DesiredAttributesFromBuildingAttributesOS.CONNECTIVITY.value:
             value = get_property_connectivity(value)
 
         list_of_desired_attributes.append(attribute_factory(desired_attribute.value, value))
@@ -36,7 +36,7 @@ def get_list_of_buildings_from_os_data(os_buildings_data: dict) -> list[Building
     list_of_buildings = []
     for building in os_buildings_data:
         list_of_buildings.append(Building(coordinates=get_desired_attributes_from_building_attributes(DesiredAttribrutesFromBuildingGeometryOS, building["geometry"]),
-                                          attributes=get_desired_attributes_from_building_attributes(DesiredAttributesFromBuildingPropertiesOS, building["properties"])))
+                                          attributes=get_desired_attributes_from_building_attributes(DesiredAttributesFromBuildingAttributesOS, building["properties"])))
 
     return list_of_buildings
 

@@ -1,6 +1,13 @@
 from src.building import Building
 from src.utils import get_list_of_buildings_from_european_data
 
+MOCK_RESPONSE_DATA = {
+    "number_of_floors": 2,
+    "distance_to_transport": 35
+}
+
+
+
 
 def test_get_building_from_euro_data_returns_buildings():
     assert isinstance(get_list_of_buildings_from_european_data(), list)
