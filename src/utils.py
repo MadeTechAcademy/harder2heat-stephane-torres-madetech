@@ -41,8 +41,8 @@ def get_list_of_buildings_from_os_data(os_buildings_data: dict) -> list[Building
     return list_of_buildings
 
 
-def get_list_of_buildings_from_european_data():
-    return []
+def get_list_of_buildings_from_european_data() -> list[Building]:
+    return [Building(coordinates=[], attributes=[])]
 
 
             

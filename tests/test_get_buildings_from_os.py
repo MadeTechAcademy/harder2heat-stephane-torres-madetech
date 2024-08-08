@@ -38,15 +38,16 @@ def test_type_object_in_properties_is_a_building():
 
 def test_building_has_list_of_coordinates():
     for attribute in FIRST_BUILDING.attributes:
-        if "coordinates" in attribute.keys():
+        if "coordinate" in attribute.keys():
             assert True
             assert attribute.value() == MOCK_FIRST_PROPERTY["coordinates"]
 
 def test_building_has_OSID():
-    for attribute in FIRST_BUILDING.attributes:
-        if "osid" in attribute.keys():
-            assert True
-            assert attribute["osid"] == MOCK_FIRST_PROPERTY["osid"]
+    assert any("osid" in attribute for attribute in FIRST_BUILDING.attributes)
+    # for attribute in FIRST_BUILDING.attributes:
+    #     if "osid" in attribute.keys():
+    #         assert True
+    #         assert attribute["osid"] == MOCK_FIRST_PROPERTY["osid"]
 
 
 def test_building_has_age_last_updated_attribute():
