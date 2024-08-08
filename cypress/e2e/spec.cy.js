@@ -38,7 +38,7 @@ describe("The correct information for each property is displayed", () => {
     it("each property should display the correct date its building age was last updated", () => {
         cy.get(".property").each((property, propertyNumber) => {
             cy.wrap(property).within(() => {
-                cy.get('[data-testId="age-last-updated"]').each((age) => {
+                cy.get('[data-testId="buildingage_updatedate"]').each((age) => {
                     cy.wrap(age).should("contain.text", mockPropertyData[propertyNumber].properties.buildingage_updatedate)
                 })
             })
@@ -48,7 +48,7 @@ describe("The correct information for each property is displayed", () => {
     it("each property should display its area in metres sq", () => {
          cy.get(".property").each((property, propertyNumber) => {
             cy.wrap(property).within(() => {
-                cy.get('[data-testId="area"]').each((area) => {
+                cy.get('[data-testId="geometry_area_m2"]').each((area) => {
                     cy.wrap(area).should("contain.text", mockPropertyData[propertyNumber].properties.geometry_area_m2)
                 })
             })

@@ -1,33 +1,6 @@
-from src.property import Property
-from area import area
-
-
-#  TODO more refactoring, introduce .get()
-#   so that we can pass an alternative if an attribute/property is not found.
-def get_properties_from_os(list_of_buildings):
-    list_of_properties = []
-    for building in list_of_buildings:
-        coordinates = building["geometry"]["coordinates"][0]
-        properties = building["properties"]
-        list_of_uprns = properties["uprnreference"]
-        for individual_property in list_of_uprns:
-            age = (
-                "buildingage_year"
-                if properties["buildingage_year"]
-                else "buildingage_period"
-            )
-            new_property = Property(individual_property["uprn"])
-            new_property.connectivity = get_property_connectivity(properties["connectivity"])
-            new_property.age = properties[age]
-            new_property.material = properties["constructionmaterial"]
-            new_property.coordinates = coordinates
-            new_property.osid = properties.get("osid", None)
-            new_property.age_last_updated = properties.get("buildingage_updatedate", None)
-            new_property.area_m2 = properties.get("geometry_area_m2", "Unknown")
-            list_of_properties.append(new_property)
-
-    return list_of_properties
-
+from enum import Enum
+from src.building import Building
+from src.enums import DesiredAttributesFromBuildingPropertiesOS, DesiredAttribrutesFromBuildingGeometryOS
 
 property_connectivities = {
     "Standalone": "Free-Standing",
@@ -36,15 +9,41 @@ property_connectivities = {
 }
 
 def get_property_connectivity(connectivity: str) -> str:
-   return property_connectivities.get(connectivity, "Unknown")
+   return property_connectivities.get(connectivity, connectivity)
 
-def get_property_area(coordinates) -> float:
-    mock_geometry = {'type':'Polygon','coordinates':[coordinates]}
-    return round(area(mock_geometry), 2)
+def get_desired_attributes_from_building_properties(desired_attributes: Enum, building_properties: dict) -> list[dict]:
+
+    list_of_desired_attributes = []
+
+    for desired_attribute in desired_attributes:
+        value = building_properties.get(desired_attribute.value, None)
+
+        if value == None:
+            raise AttributeError(f'Attribute {desired_attribute} not found')
+
+        if desired_attribute.value == DesiredAttributesFromBuildingPropertiesOS.CONNECTIVITY.value:
+            value = get_property_connectivity(value)
+
+        list_of_desired_attributes.append(attribute_factory(desired_attribute.value, value))
+
+    return list_of_desired_attributes
+
+def attribute_factory(desired_attribute: str, value: str) -> dict:
+    return {desired_attribute: value}
+
+
+def get_list_of_buildings_from_os_data(os_buildings_data: dict) -> list[Building]:
+    list_of_buildings = []
+    for building in os_buildings_data:
+        list_of_buildings.append(Building(coordinates=get_desired_attributes_from_building_properties(DesiredAttribrutesFromBuildingGeometryOS, building["geometry"]),
+                                          attributes=get_desired_attributes_from_building_properties(DesiredAttributesFromBuildingPropertiesOS, building["properties"])))
+
+    return list_of_buildings
+
 
 
             
-
+#
 
 
 

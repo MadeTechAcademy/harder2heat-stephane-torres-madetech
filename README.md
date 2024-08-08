@@ -60,3 +60,45 @@ Hopefully by now you should appreciate the benefits of TDD, and you want to shar
 - [ ] Show a non-dev (user researcher, delivery manager etc.) the tests written in part 2 with your new framework. How easy is it for them to understand what the code should do? What improvements can be made?
 
 - [ ] Document how you are sharing TDD either with non-developers on your team or developers new to TDD. It must be clear they are new, to TDD, and include how you are working with them, and what test they have written.
+
+
+
+# How to Run
+
+## Set Up
+
+cd into correct directory
+```commandline
+python3 -m venv .
+pip install requirements.txt
+```
+Make sure to be in the correct directory, create a python virtual environment and install necessary dependencies
+
+```commandline
+npm install
+```
+install the relevant node packages/dependencies
+
+## Tests 
+
+```commandline
+npm run cy:open 
+```
+
+Launches cypress, click E2E tests, and run spec.cy.js
+
+
+```commandline
+pytest tests/
+```
+Runs unit tests
+
+```commandline
+coverage run -m pytest tests/
+```
+Runs unit tests with coverage
+
+```commandline
+coverage report
+```
+gets coverage report, run after running coverage with unit tests
