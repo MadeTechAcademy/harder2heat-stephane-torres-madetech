@@ -17,5 +17,3 @@ class Building:
                     for property in attribute.get("uprnreference"):
                         self.properties.append(Property(property['uprn']))
 
-        # return self.properties
-# THIS IS STINKY

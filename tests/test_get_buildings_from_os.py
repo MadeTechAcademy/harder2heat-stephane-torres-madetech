@@ -3,7 +3,7 @@ from enum import Enum
 import pytest
 from src.building import Building
 from src.enums import DesiredAttributesFromBuildingPropertiesOS
-from src.utils import get_property_connectivity, get_desired_attributes_from_building_properties, \
+from src.utils import get_property_connectivity, get_desired_attributes_from_building_attributes, \
     get_list_of_buildings_from_os_data
 
 with open('properties.json') as json_properties:
@@ -81,14 +81,14 @@ def test_get_desired_attributes_from_building_properties_returns_dicts_of_desire
                 {"connectivity": MOCK_FIRST_PROPERTY["connectivity"]},
                 {'uprnreference': [{'buildingid': '02ae4ae4-6119-4d72-aef9-e56013d25e0d', 'buildingversiondate': '2024-05-25', 'uprn': 100090062842}]}
 ]
-    assert get_desired_attributes_from_building_properties(DesiredAttributesFromBuildingPropertiesOS, data[0]["properties"]) == expected
+    assert get_desired_attributes_from_building_attributes(DesiredAttributesFromBuildingPropertiesOS, data[0]["properties"]) == expected
 
 def test_error_is_thrown_when_attribute_not_found():
     class WrongAttributes(Enum):
         AREA = "area"
 
     with pytest.raises(AttributeError):
-        get_desired_attributes_from_building_properties(WrongAttributes, data[0]["properties"])
+        get_desired_attributes_from_building_attributes(WrongAttributes, data[0]["properties"])
 
 
 
