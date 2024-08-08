@@ -44,29 +44,28 @@ def test_building_has_list_of_coordinates():
 
 def test_building_has_OSID():
     assert any("osid" in attribute for attribute in FIRST_BUILDING.attributes)
-    # for attribute in FIRST_BUILDING.attributes:
-    #     if "osid" in attribute.keys():
-    #         assert True
-    #         assert attribute["osid"] == MOCK_FIRST_PROPERTY["osid"]
+    for attribute in FIRST_BUILDING.attributes:
+        if "osid" in attribute.keys():
+            assert attribute["osid"] == MOCK_FIRST_PROPERTY["osid"]
 
 
 def test_building_has_age_last_updated_attribute():
+    assert any("buildingage_updatedate" in attribute for attribute in FIRST_BUILDING.attributes)
     for attribute in FIRST_BUILDING.attributes:
         if "buildingage_updatedate" in attribute.keys():
-            assert True
             assert attribute["buildingage_updatedate"] == MOCK_FIRST_PROPERTY["age_last_updated"]
 
 
 def test_building_has_connectivity_attribute():
+    assert any("connectivity" in attribute for attribute in FIRST_BUILDING.attributes)
     for attribute in FIRST_BUILDING.attributes:
         if "connectivity" in attribute.keys():
-            assert True
             assert attribute["connectivity"] == MOCK_FIRST_PROPERTY["connectivity"]
 
 def test_building_has_area_attribute():
+    assert any("geometry_area_m2" in attribute for attribute in FIRST_BUILDING.attributes)
     for attribute in FIRST_BUILDING.attributes:
         if "geometry_area_m2" in attribute.keys():
-            assert True
             assert attribute["geometry_area_m2"] == MOCK_FIRST_PROPERTY["area"]
 
 #
