@@ -7,13 +7,13 @@
 
 </head>
 <body>
-<p>Properties : {{ properties|length }}</p>
+<h2>Number of Properties : {{ properties|length }}</h2>
 
 {% for property in properties %}
     <div class="property" style="border: solid black 1px">
         {% for attribute in property.attributes %}
             {% for key, value in attribute.items() %}
-                <h3>{{ key }}</h3>
+                <h3>{{ key }}:</h3>
                 <p data-testid = {{ key }}>{{ value }}</p>
                     {% endfor %}
             {% endfor %}
@@ -21,8 +21,8 @@
         <h3>Coordinates:</h3>
         <ul>
             {% for coordinates in property.coordinates %}
-                {% for key, value in coordinates.items() %}
-                    {% for coord_pair in value[0] %}
+                {% for key, coordinate_list in coordinates.items() %}
+                    {% for coord_pair in coordinate_list[0] %}
                         <li>{{ coord_pair[0] }}, {{ coord_pair[1] }}</li>
                             {% endfor %}
                     {% endfor %}
