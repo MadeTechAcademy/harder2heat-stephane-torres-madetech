@@ -1,6 +1,7 @@
 from enum import Enum
 from src.building import Building
 from src.enums import DesiredAttributesFromBuildingAttributesOS, DesiredAttribrutesFromBuildingGeometryOS
+from src.property import Property
 
 property_connectivities = {
     "Standalone": "Free-Standing",
@@ -38,7 +39,18 @@ def get_list_of_buildings_from_os_data(os_buildings_data: dict) -> list[Building
         list_of_buildings.append(Building(coordinates=get_desired_attributes_from_building_attributes(DesiredAttribrutesFromBuildingGeometryOS, building["geometry"]),
                                           attributes=get_desired_attributes_from_building_attributes(DesiredAttributesFromBuildingAttributesOS, building["properties"])))
 
+    for building in list_of_buildings:
+        get_properties_using_uprn(building)
+
     return list_of_buildings
+
+
+def get_properties_using_uprn(building: Building):
+    for attribute in building.attributes:
+        for key, value in attribute.items():
+            if key == "uprnreference":
+                for property in attribute.get("uprnreference"):
+                    building.properties.append(Property(property['uprn']))
 
 
 def get_list_of_buildings_from_european_data() -> list[Building]:
