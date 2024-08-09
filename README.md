@@ -77,7 +77,7 @@ Make sure to be in the correct directory, create a python virtual environment an
 ```commandline
 npm install
 ```
-install the relevant node packages/dependencies
+install the relevant Node packages/dependencies
 
 ## Tests 
 
@@ -102,3 +102,21 @@ Runs unit tests with coverage
 coverage report
 ```
 gets coverage report, run after running coverage with unit tests
+
+```commandline
+python3 src/euro-api/test_using_euro_api.py
+```
+Runs test for euro-api calls
+
+
+## App
+
+```commandline
+flask run
+```
+Spins up flask app locally, default is 'http://localhost:5000' check this is the case, if not E2E tests may fail
+
+```commandline
+flask run --debug
+```
+Runs app, any code changes and the server will automatically (hot reloading?)
