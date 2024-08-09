@@ -15,7 +15,7 @@ class BuildingTestCases(unittest.TestCase):
         self.buildings = buildings
 
 
-    def test_number_of_buildings(self):
+    def test_buildings_building_attributes(self):
         """Displays correct building information"""
         verify("building.feature", self)
 
@@ -39,3 +39,30 @@ class BuildingTestCases(unittest.TestCase):
                         osids.append(value)
 
         self.assertEqual(len(osids), int(number))
+
+    def step_There_should_be_number_areas_displayed(self, number):
+        r'There should be "{number}" areas displayed'
+
+        areas = []
+        for building in self.buildings:
+            for attribute in building.attributes:
+                for key, value in attribute.items():
+                    if key == "geometry_area_m2":
+                        areas.append(value)
+
+        self.assertEqual(len(areas), int(number))
+
+    def step_There_should_be_number_connectivities_displayed(self, number):
+        r'There should be "{number}" connectivities displayed'
+
+        connectivies = []
+        for building in self.buildings:
+            for attribute in building.attributes:
+                for key, value in attribute.items():
+                    if key == "connectivity":
+                        connectivies.append(value)
+
+        self.assertEqual(len(connectivies), int(number))
+
+
+
