@@ -1,5 +1,4 @@
 import unittest
-
 from unittest.mock import patch, MagicMock
 from handle_euro_api import get_euro_data
 
@@ -29,6 +28,7 @@ class TestEuroAPI(unittest.TestCase):
 
         body = get_euro_data()
         self.assertEqual(body["status_code"],200)
+        self.assertEqual(body["body"][0]["properties"]["number_of_floors"],2 )
 
     @patch("handle_euro_api.requests")
     def test_euro_api_responds_500(self, mock_requests):
@@ -38,8 +38,8 @@ class TestEuroAPI(unittest.TestCase):
         mock_requests.get.return_value = response
         body = get_euro_data()
         self.assertRaises(Exception, get_euro_data())
-        self.assertEqual(body[0]["status_code"],  500)
-        self.assertEqual(body[0]["status_code"], response.status_code)
+        self.assertEqual(body.args[0]["status_code"],  500)
+        self.assertEqual(body.args[0]["status_code"], response.status_code)
 
 
 

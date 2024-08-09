@@ -10,6 +10,6 @@ def get_euro_data():
         else:
             raise Exception ({"status_code": 500, "response_body": "Internal Server Error"})
     except Exception as e:
-        return e.args
+        return e
 
 
