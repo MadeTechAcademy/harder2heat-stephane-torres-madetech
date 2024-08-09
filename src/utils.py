@@ -5,7 +5,7 @@ from src.property import Property
 
 property_connectivities = {
     "Standalone": "Free-Standing",
-    "Semi-Connected": "Dual-Connected",
+    "Semi-Detached": "Dual-Connected",
     "End Connected": "Single Connected",
 }
 

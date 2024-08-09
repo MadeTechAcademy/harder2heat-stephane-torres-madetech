@@ -1,7 +1,7 @@
 import json
 import unittest
 from morelia import run, verify
-from ..utils import get_list_of_buildings_from_os_data
+from ..utils import get_list_of_buildings_from_os_data, get_property_connectivity
 
 
 
@@ -64,5 +64,18 @@ class BuildingTestCases(unittest.TestCase):
 
         self.assertEqual(len(connectivies), int(number))
 
+class ConnectivityTestCases(unittest.TestCase):
+
+    def test_connectivity(self):
+        """Differing connectivities"""
+        verify("connectivity.feature", self)
+
+    def step_a_building_has_old_connectivity(self, old_connectivity):
+        r'a building has {old_connectivity}'
+        self.connectivity = old_connectivity
 
 
+
+    def step_it_should_read_new_connectivity(self, new_connectivity):
+        r'it should read {new_connectivity}'
+        self.assertEqual(get_property_connectivity(self.connectivity), new_connectivity)
