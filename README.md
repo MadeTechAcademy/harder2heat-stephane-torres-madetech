@@ -103,6 +103,12 @@ coverage report
 ```
 gets coverage report, run after running coverage with unit tests
 
+```commandline
+python3 src/euro-api/test_using_euro_api.py
+```
+Runs test for euro-api calls
+
+
 ## App
 
 ```commandline

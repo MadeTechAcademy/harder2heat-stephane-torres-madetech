@@ -18,9 +18,6 @@ euro_api_mock_response = {
 
 class TestEuroAPI(unittest.TestCase):
 
-    def setUp(self):
-        self.url = "http://euro-api.com"
-
     @patch("handle_euro_api.requests")
     def test_euro_api_responds_200(self, mock_requests):
 
@@ -30,8 +27,21 @@ class TestEuroAPI(unittest.TestCase):
         mock_requests.get.return_value = response
 
 
-        body = get_euro_data(self.url)
+        body = get_euro_data()
         self.assertEqual(body["status_code"],200)
+
+    @patch("handle_euro_api.requests")
+    def test_euro_api_responds_500(self, mock_requests):
+        response = MagicMock()
+        response.status_code = 500
+        response.json.return_value = {"status_code": 500, "response_body": "Internal Server Error"}
+        mock_requests.get.return_value = response
+        body = get_euro_data()
+        self.assertRaises(Exception, get_euro_data())
+        self.assertEqual(body[0]["status_code"],  500)
+        self.assertEqual(body[0]["status_code"], response.status_code)
+
+
 
 
 if __name__ == "__main__":
