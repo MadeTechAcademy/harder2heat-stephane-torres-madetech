@@ -16,16 +16,26 @@ class BuildingTestCases(unittest.TestCase):
 
 
     def test_number_of_buildings(self):
-        """Number of buildings feature"""
+        """Displays correct building information"""
         verify("building.feature", self)
-    #
-    def step_The_page_loads(self):
-        r"The page loads"
-        # self.setUp()
-        self.result = 3 + 1
 
+    def step_The_page_loads(self):
+        r'The page loads'
+        self.setUp()
 
     def step_number_properties_on_the_page_should_be_displayed(self, number):
         r'"{number}" properties on the page should be displayed'
 
         self.assertEqual(int(number), len(self.buildings))
+
+    def step_There_should_be_number_osid_displayed(self, number):
+        r'There should be "{number}" osid displayed'
+
+        osids = []
+        for building in self.buildings:
+            for attribute in building.attributes:
+                for key, value in attribute.items():
+                    if key == "osid":
+                        osids.append(value)
+
+        self.assertEqual(len(osids), int(number))

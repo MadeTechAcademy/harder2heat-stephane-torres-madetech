@@ -93,21 +93,33 @@ pytest tests/
 ```
 Runs unit tests
 
+
+
 ```commandline
 coverage run -m pytest tests/
 ```
 Runs unit tests with coverage
+
+
 
 ```commandline
 coverage report
 ```
 gets coverage report, run after running coverage with unit tests
 
+
+
 ```commandline
 python3 src/euro-api/test_using_euro_api.py
 ```
 Runs test for euro-api calls
 
+
+```commandline
+cd src/morelia
+pytest test_acceptance.py
+```
+Runs BDD stlye tests
 
 ## App
 
