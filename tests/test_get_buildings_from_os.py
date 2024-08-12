@@ -2,7 +2,7 @@ import json
 from enum import Enum
 import pytest
 from src.building import Building
-from src.enums import DesiredAttributesFromBuildingAttributesOS
+from src.enums import DesiredAttributesFromBuildingAttributesOS, DesiredAttribrutesFromBuildingGeometryOS
 from src.utils import get_property_connectivity, get_desired_attributes_from_building_attributes, get_list_of_buildings_from_os_data
 
 with open('properties.json') as json_properties:
@@ -36,36 +36,36 @@ def test_type_object_in_properties_is_a_building():
     assert isinstance(buildings[0], Building)
 
 def test_building_has_list_of_coordinates():
-    assert any("coordinates" in dictionary for dictionary in FIRST_BUILDING.coordinates)
+    assert any(DesiredAttribrutesFromBuildingGeometryOS.COORDINATES in dictionary for dictionary in FIRST_BUILDING.coordinates)
     for attribute in FIRST_BUILDING.attributes:
-        if "coordinates" in attribute.keys():
-            assert attribute.value() == MOCK_FIRST_PROPERTY["coordinates"]
+        if DesiredAttribrutesFromBuildingGeometryOS.COORDINATES in attribute.keys():
+            assert attribute.get(DesiredAttribrutesFromBuildingGeometryOS.COORDINATES) == MOCK_FIRST_PROPERTY["coordinates"]
 
 def test_building_has_OSID():
-    assert any("osid" in attribute for attribute in FIRST_BUILDING.attributes)
+    assert any(DesiredAttributesFromBuildingAttributesOS.OSID in attribute for attribute in FIRST_BUILDING.attributes)
     for attribute in FIRST_BUILDING.attributes:
-        if "osid" in attribute.keys():
-            assert attribute["osid"] == MOCK_FIRST_PROPERTY["osid"]
+        if DesiredAttributesFromBuildingAttributesOS.OSID in attribute.keys():
+            assert attribute.get(DesiredAttributesFromBuildingAttributesOS.OSID) == MOCK_FIRST_PROPERTY["osid"]
 
 
 def test_building_has_age_last_updated_attribute():
-    assert any("buildingage_updatedate" in attribute for attribute in FIRST_BUILDING.attributes)
+    assert any(DesiredAttributesFromBuildingAttributesOS.AGE_LAST_UPDATED in attribute for attribute in FIRST_BUILDING.attributes)
     for attribute in FIRST_BUILDING.attributes:
-        if "buildingage_updatedate" in attribute.keys():
-            assert attribute["buildingage_updatedate"] == MOCK_FIRST_PROPERTY["age_last_updated"]
+        if DesiredAttributesFromBuildingAttributesOS.AGE_LAST_UPDATED in attribute.keys():
+            assert attribute[DesiredAttributesFromBuildingAttributesOS.AGE_LAST_UPDATED] == MOCK_FIRST_PROPERTY["age_last_updated"]
 
 
 def test_building_has_connectivity_attribute():
-    assert any("connectivity" in attribute for attribute in FIRST_BUILDING.attributes)
+    assert any(DesiredAttributesFromBuildingAttributesOS.CONNECTIVITY in attribute for attribute in FIRST_BUILDING.attributes)
     for attribute in FIRST_BUILDING.attributes:
-        if "connectivity" in attribute.keys():
-            assert attribute["connectivity"] == MOCK_FIRST_PROPERTY["connectivity"]
+        if DesiredAttributesFromBuildingAttributesOS.CONNECTIVITY  in attribute.keys():
+            assert attribute[DesiredAttributesFromBuildingAttributesOS.CONNECTIVITY ] == MOCK_FIRST_PROPERTY["connectivity"]
 
 def test_building_has_area_attribute():
-    assert any("geometry_area_m2" in attribute for attribute in FIRST_BUILDING.attributes)
+    assert any(DesiredAttributesFromBuildingAttributesOS.AREA in attribute for attribute in FIRST_BUILDING.attributes)
     for attribute in FIRST_BUILDING.attributes:
-        if "geometry_area_m2" in attribute.keys():
-            assert attribute["geometry_area_m2"] == MOCK_FIRST_PROPERTY["area"]
+        if DesiredAttributesFromBuildingAttributesOS.AREA  in attribute.keys():
+            assert attribute[DesiredAttributesFromBuildingAttributesOS.AREA ] == MOCK_FIRST_PROPERTY["area"]
 
 #
 def test_get_property_connectivity():
@@ -75,10 +75,10 @@ def test_get_property_connectivity():
 
 
 def test_get_desired_attributes_from_building_properties_returns_dicts_of_desired_attributes():
-    expected = [{"osid": MOCK_FIRST_PROPERTY["osid"]}, {"geometry_area_m2": MOCK_FIRST_PROPERTY["area"]},
-                {"buildingage_updatedate": MOCK_FIRST_PROPERTY["age_last_updated"]},
-                {"connectivity": MOCK_FIRST_PROPERTY["connectivity"]},
-                {'uprnreference': [{'buildingid': '02ae4ae4-6119-4d72-aef9-e56013d25e0d', 'buildingversiondate': '2024-05-25', 'uprn': 100090062842}]}
+    expected = [{DesiredAttributesFromBuildingAttributesOS.OSID: MOCK_FIRST_PROPERTY["osid"]}, {DesiredAttributesFromBuildingAttributesOS.AREA: MOCK_FIRST_PROPERTY["area"]},
+                {DesiredAttributesFromBuildingAttributesOS.AGE_LAST_UPDATED: MOCK_FIRST_PROPERTY["age_last_updated"]},
+                {DesiredAttributesFromBuildingAttributesOS.CONNECTIVITY: MOCK_FIRST_PROPERTY["connectivity"]},
+                {DesiredAttributesFromBuildingAttributesOS.PROPERTIES: [{'buildingid': '02ae4ae4-6119-4d72-aef9-e56013d25e0d', 'buildingversiondate': '2024-05-25', 'uprn': 100090062842}]}
 ]
     assert get_desired_attributes_from_building_attributes(DesiredAttributesFromBuildingAttributesOS, data[0]["properties"]) == expected
 

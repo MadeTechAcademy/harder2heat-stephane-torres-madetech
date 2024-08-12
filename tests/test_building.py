@@ -14,11 +14,11 @@ test_building = Building(coordinates=get_desired_attributes_from_building_attrib
 
 def test_building_has_a_list_of_coordinates():
     assert isinstance(test_building.coordinates, list)
-    assert test_building.coordinates == [{"coordinates": data[0]["geometry"]["coordinates"]}]
+    assert test_building.coordinates == [{DesiredAttribrutesFromBuildingGeometryOS.COORDINATES: data[0]["geometry"]["coordinates"]}]
 
 def test_building_has_a_list_of_desired_attributes():
     assert isinstance(test_building.attributes, list)
-    assert test_building.attributes[0] == {"osid": data[0]["properties"]["osid"]}
+    assert test_building.attributes[0] == {DesiredAttributesFromBuildingAttributesOS.OSID: data[0]["properties"]["osid"]}
 
 def test_building_has_a_list_of_properties():
     assert isinstance(test_building.properties, list)

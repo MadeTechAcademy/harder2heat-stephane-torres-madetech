@@ -20,16 +20,16 @@ def get_desired_attributes_from_building_attributes(desired_attributes: Enum, bu
         value = building_attributes.get(desired_attribute.value, None)
 
         if value == None:
-            raise AttributeError(f'Attribute {desired_attribute} not found')
+            raise AttributeError(f'Attribute {desired_attribute.value} not found')
 
-        if desired_attribute.value == DesiredAttributesFromBuildingAttributesOS.CONNECTIVITY.value:
+        if desired_attribute == DesiredAttributesFromBuildingAttributesOS.CONNECTIVITY:
             value = get_property_connectivity(value)
 
-        list_of_desired_attributes.append(attribute_factory(desired_attribute.value, value))
+        list_of_desired_attributes.append(attribute_factory(desired_attribute, value))
 
     return list_of_desired_attributes
 
-def attribute_factory(desired_attribute: str, value: str) -> dict:
+def attribute_factory(desired_attribute: Enum, value: str) -> dict:
     return {desired_attribute: value}
 
 
