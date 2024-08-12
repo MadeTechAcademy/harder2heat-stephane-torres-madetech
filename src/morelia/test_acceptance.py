@@ -2,6 +2,7 @@ import json
 import unittest
 from morelia import run, verify
 from ..utils import get_list_of_buildings_from_os_data, get_property_connectivity
+from ..enums import DesiredAttribrutesFromBuildingGeometryOS, DesiredAttributesFromBuildingAttributesOS
 
 
 
@@ -35,7 +36,7 @@ class BuildingTestCases(unittest.TestCase):
         for building in self.buildings:
             for attribute in building.attributes:
                 for key, value in attribute.items():
-                    if key == "osid":
+                    if key == DesiredAttributesFromBuildingAttributesOS.OSID:
                         osids.append(value)
 
         self.assertEqual(len(osids), int(number))
@@ -47,7 +48,7 @@ class BuildingTestCases(unittest.TestCase):
         for building in self.buildings:
             for attribute in building.attributes:
                 for key, value in attribute.items():
-                    if key == "geometry_area_m2":
+                    if key == DesiredAttributesFromBuildingAttributesOS.AREA:
                         areas.append(value)
 
         self.assertEqual(len(areas), int(number))
@@ -59,7 +60,7 @@ class BuildingTestCases(unittest.TestCase):
         for building in self.buildings:
             for attribute in building.attributes:
                 for key, value in attribute.items():
-                    if key == "connectivity":
+                    if key == DesiredAttributesFromBuildingAttributesOS.CONNECTIVITY:
                         connectivies.append(value)
 
         self.assertEqual(len(connectivies), int(number))
