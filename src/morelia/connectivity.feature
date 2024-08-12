@@ -9,5 +9,5 @@ Scenario: Building has old connectivity reads new connectivity
         | old_connectivity | new_connectivity |
 
         | Standalone       | Free-Standing    |
-        | Semi-Detached    | Dual-Connected   |
+        | Semi-Connected   | Dual-Connected   |
         | End Connected    | Single Connected |

@@ -3,8 +3,7 @@ from enum import Enum
 import pytest
 from src.building import Building
 from src.enums import DesiredAttributesFromBuildingAttributesOS
-from src.utils import get_property_connectivity, get_desired_attributes_from_building_attributes, \
-    get_list_of_buildings_from_os_data
+from src.utils import get_property_connectivity, get_desired_attributes_from_building_attributes, get_list_of_buildings_from_os_data
 
 with open('properties.json') as json_properties:
     data = json.load(json_properties)

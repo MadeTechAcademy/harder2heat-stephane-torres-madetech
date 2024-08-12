@@ -17,7 +17,7 @@ class BuildingTestCases(unittest.TestCase):
 
     def test_buildings_building_attributes(self):
         """Displays correct building information"""
-        verify("building.feature", self)
+        verify("./building.feature", self)
 
     def step_The_page_loads(self):
         r'The page loads'
