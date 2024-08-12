@@ -13,8 +13,8 @@
     <div class="property" style="border: solid black 1px">
         {% for attribute in property.attributes %}
             {% for key, value in attribute.items() %}
-                <h3>{{ key }}:</h3>
-                <p data-testid = {{ key }}>{{ value }}</p>
+                <h3>{{ key.value }}:</h3>
+                <p data-testid = {{ key.value }}>{{ value }}</p>
                     {% endfor %}
             {% endfor %}
 
