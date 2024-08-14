@@ -84,8 +84,9 @@ install the relevant Node packages/dependencies
 ```commandline
 npm run cy:open 
 ```
-
-Launches cypress, click E2E tests, and run spec.cy.js
+Before launching cypress, run the app by running "flask run" from the command line from the app root directory
+Launches cypress, click E2E tests, click "Start E2E Testing <in your prefered browser>"  and run spec.cy.js
+by double clicking spec.cy.js
 
 
 ```commandline
